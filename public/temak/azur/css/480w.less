@@ -1,0 +1,145 @@
+// main: ../css/style.less
+// 480
+
+@media screen and (max-width: 480px) {
+
+
+    // header
+    .header {
+
+        .logo {
+            .wh(180px,22px);
+            top: 19px;
+            left: 50px;
+            margin: 0;
+        }
+    }
+
+    // added to favorites popup
+    .added-to-favs {
+        bottom: 20px;
+        left: 0;
+        width: 100%;
+        padding: 0 20px;
+
+        .added-to-favs-inner {
+            width: 100%;
+        }
+
+        .added-to-favs-title {
+
+            .added-to-favs-close {
+                .opacity(1);
+            }
+        }
+
+        .added-to-favs-content {
+
+            a {
+                text-decoration: underline;
+            }
+        }
+    }
+
+
+    // product-slider
+    .product-slider-container {
+
+        .heading {
+            padding: 0 20px;
+            margin: 0;
+        }
+
+        .product-slider {
+            width: 60%;
+            margin: 0 auto 30px auto;
+        }
+
+        .slide {
+            padding: 20px 10px 0 10px;
+            position: relative;
+
+            .add-to-favs {
+                top: 25px;
+            }
+
+            a {
+
+                .img-container {
+                    .box-shadow(0 0 15px rgba(0,0,0,.02));
+                    padding: 10px;
+                    margin: 0 0 15px;
+                }
+
+                &:hover {
+
+                    .img-container {
+                        .box-shadow(0 0 15px rgba(0,0,0,.05));
+                    }
+                }
+            }
+
+        }
+
+        /* Arrows */
+        .slick-prev,
+        .slick-next {
+            top: 50%;
+        }
+
+        .slick-prev {
+            left: -50px;
+        }
+
+        .slick-next {
+            right: -50px;
+        }
+
+    }
+
+
+
+    // bottom-info
+    .bottom-info-container {
+
+        .bottom-info {
+            .flex-wrap(wrap);
+        }
+
+        .about-box {
+            .flex-order(3);
+            width: 100%;
+
+            .img-container {
+                .wh(120px,280px);;
+            }
+        }
+
+        .showrooms-box {
+
+            .showrooms-box-item {
+
+                .img-container {
+                    .wh(120px,120px);;
+                }
+            }
+        }
+
+        .news-box {
+
+            .news-box-item {
+                min-height: 0;
+
+                .text {
+                    .flex-grow(1);
+                    height: auto;
+                    overflow: visible;
+                    padding-top: 0;
+                }
+            }
+        }
+    }
+
+
+
+}

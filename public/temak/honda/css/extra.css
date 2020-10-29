@@ -1,0 +1,484 @@
+
+
+/* Absolute Center Spinner */
+
+.loading {
+
+
+
+  position: fixed;
+
+  z-index: 999;
+
+  height: 2em;
+
+  width: 2em;
+
+  overflow: show;
+
+  margin: auto;
+
+  top: 0;
+
+  left: 0;
+
+  bottom: 0;
+
+  right: 0;
+
+}
+
+
+
+/* Transparent Overlay */
+
+.loading:before {
+
+  content: '';
+
+  display: block;
+
+  position: fixed;
+
+  top: 0;
+
+  left: 0;
+
+  width: 100%;
+
+  height: 100%;
+
+    background: radial-gradient(rgba(254,254,254,.3), rgba(254,254,254,.3));
+
+
+
+  background: -webkit-radial-gradient(rgba(254,254,254,.3), rgba(254,254,254,.3));
+
+}
+
+
+
+/* :not(:required) hides these rules from IE9 and below */
+
+.loading:not(:required) {
+
+  /* hide "loading..." text */
+
+  font: 0/0 a;
+
+  color: transparent;
+
+  text-shadow: none;
+
+  background-color: transparent;
+
+  border: 0;
+
+}
+
+
+
+.loading:not(:required):after {
+
+  content: '';
+
+  display: block;
+
+  font-size: 10px;
+
+  width: 1em;
+
+  height: 1em;
+
+  margin-top: -0.5em;
+
+  -webkit-animation: spinner 1500ms infinite linear;
+
+  -moz-animation: spinner 1500ms infinite linear;
+
+  -ms-animation: spinner 1500ms infinite linear;
+
+  -o-animation: spinner 1500ms infinite linear;
+
+  animation: spinner 1500ms infinite linear;
+
+  border-radius: 0.5em;
+
+  -webkit-box-shadow: rgba(220,24,45, 1) 1.5em 0 0 0, rgba(220,24,45, 1) 1.1em 1.1em 0 0, rgba(220,24,45, 1) 0 1.5em 0 0, rgba(220,24,45, 1) -1.1em 1.1em 0 0, rgba(220,24,45, 1) -1.5em 0 0 0, rgba(220,24,45, 1) -1.1em -1.1em 0 0, rgba(220,24,45, 1) 0 -1.5em 0 0, rgba(220,24,45, 1) 1.1em -1.1em 0 0;
+
+box-shadow: rgba(220,24,45, 1) 1.5em 0 0 0, rgba(220,24,45, 1) 1.1em 1.1em 0 0, rgba(220,24,45, 1) 0 1.5em 0 0, rgba(220,24,45, 1) -1.1em 1.1em 0 0, rgba(220,24,45, 1) -1.5em 0 0 0, rgba(220,24,45, 1) -1.1em -1.1em 0 0, rgba(220,24,45, 1) 0 -1.5em 0 0, rgba(220,24,45, 1) 1.1em -1.1em 0 0;
+
+}
+
+
+
+/* Animation */
+
+
+
+@-webkit-keyframes spinner {
+
+  0% {
+
+    -webkit-transform: rotate(0deg);
+
+    -moz-transform: rotate(0deg);
+
+    -ms-transform: rotate(0deg);
+
+    -o-transform: rotate(0deg);
+
+    transform: rotate(0deg);
+
+  }
+
+  100% {
+
+    -webkit-transform: rotate(360deg);
+
+    -moz-transform: rotate(360deg);
+
+    -ms-transform: rotate(360deg);
+
+    -o-transform: rotate(360deg);
+
+    transform: rotate(360deg);
+
+  }
+
+}
+
+@-moz-keyframes spinner {
+
+  0% {
+
+    -webkit-transform: rotate(0deg);
+
+    -moz-transform: rotate(0deg);
+
+    -ms-transform: rotate(0deg);
+
+    -o-transform: rotate(0deg);
+
+    transform: rotate(0deg);
+
+  }
+
+  100% {
+
+    -webkit-transform: rotate(360deg);
+
+    -moz-transform: rotate(360deg);
+
+    -ms-transform: rotate(360deg);
+
+    -o-transform: rotate(360deg);
+
+    transform: rotate(360deg);
+
+  }
+
+}
+
+@-o-keyframes spinner {
+
+  0% {
+
+    -webkit-transform: rotate(0deg);
+
+    -moz-transform: rotate(0deg);
+
+    -ms-transform: rotate(0deg);
+
+    -o-transform: rotate(0deg);
+
+    transform: rotate(0deg);
+
+  }
+
+  100% {
+
+    -webkit-transform: rotate(360deg);
+
+    -moz-transform: rotate(360deg);
+
+    -ms-transform: rotate(360deg);
+
+    -o-transform: rotate(360deg);
+
+    transform: rotate(360deg);
+
+  }
+
+}
+
+@keyframes spinner {
+
+  0% {
+
+    -webkit-transform: rotate(0deg);
+
+    -moz-transform: rotate(0deg);
+
+    -ms-transform: rotate(0deg);
+
+    -o-transform: rotate(0deg);
+
+    transform: rotate(0deg);
+
+  }
+
+  100% {
+
+    -webkit-transform: rotate(360deg);
+
+    -moz-transform: rotate(360deg);
+
+    -ms-transform: rotate(360deg);
+
+    -o-transform: rotate(360deg);
+
+    transform: rotate(360deg);
+
+  }
+
+}
+.offer-slider .slider .slide .item .new-badge {
+    top: 41px;
+    display:block;
+}
+.offer-slider .slider .slide .item .new-badge2 {
+	display:none;
+    position: absolute;
+    left: -5px;
+    background-color: #248a51;
+    font-family: 'ProximaNovaExCnSbold';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 13px;
+    line-height: 24px;
+    letter-spacing: .25px;
+    color: white;
+    width: auto;
+    height: 24px;
+    padding: 0 10px;
+}
+.item .new-badge2 {
+    top: 74px;
+    display: block;
+}
+.offer-slider .slider .slide .item .new-badge2:after {
+    content: '';
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    background-image: url(../img/icon-new-badge.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    left: 0;
+    bottom: -5px;
+}
+.product-list .prod-container .products li .item .new-badge {
+    display: none;
+}
+.karsa-logo {
+	display: block;
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background-color: #ffffff;
+    top: 0;
+    left: 110px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: url("../img/karasna_logo.png");
+}
+.header .nav {
+    left: 230px;
+}
+.header .back-to-homepage {
+    left: 230px;
+}
+@media screen and (max-width: 960px) {
+.karsa-logo {
+	display: block;
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background-color: #ffffff;
+    top: 0px;
+    left: 50px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: url("../img/karasna_logo.png");
+}
+
+}
+
+.fooldalikategoriak {
+	width:100%!important;
+}
+.fooldalikategoriak ul{
+	text-align: center;
+}
+@media screen and (min-width: 960px) {
+	.fooldalikategoriak li{
+		width:20%!important;
+		float: none!important;
+		display: inline-block!important;
+	}
+}
+
+@media screen and (max-width: 960px) {
+	.karsa-logo {
+		width:50px!important;
+	}
+}
+.offer-slider .slider .slide .item .new-badge2 {
+    display: block;
+}
+
+.product-list .prod-container .products li .item .sale-badge {
+    display: block;
+}
+.product-list .prod-container .products li .item .new-badge {
+    display: block;
+}
+.product-list .prod-container .products li .item .new-badge2 {
+    display: block;
+    position: absolute;
+    left: -5px;
+    background-color: #D38901;
+    font-family: 'ProximaNovaExCnSbold';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 13px;
+    line-height: 24px;
+    letter-spacing: .25px;
+    color: white;
+    width: auto;
+    height: 24px;
+    padding: 0 10px;
+
+
+}
+.product-list .prod-container .products li .item .new-badge2:after {
+    content: '';
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    background-image: url(../img/icon-sale-badge.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    left: 0;
+    bottom: -5px;
+}
+
+.badge-pos0 {
+	top:10px!important;
+}
+.badge-pos1 {
+	top:40px!important;
+}
+.badge-pos2 {
+	top:70px!important;
+}
+.badge-pos3 {
+	top:100px!important;
+}
+.slide img {
+    cursor:pointer;
+}
+.product-img-container {
+	position:relative;
+}
+.prodsale-badge, .prodnew-badge, .prodnew-badge2 {
+	position: absolute;
+	left: 20px;
+	display:inline-block;
+	
+	color: #fff;
+	font-size: 11px;
+	padding: 7px 14px;
+	z-index: 100;
+}
+.prodsale-badge {
+	background: #dc182d;
+} 
+.prodnew-badge {
+	background: #248a51;
+} 
+.prodnew-badge2 {
+background: #ea3;
+}
+.prodbadge-pos0 {
+	top: 20px;
+}
+.prodbadge-pos1 {
+	top: 60px;
+}
+.prodbadge-pos2 {
+	top: 100px;
+}
+
+.elerheto_keszlet {
+	display: block;
+	width: 100%;
+	clear: both;
+	text-align: left;
+	font-weight: bold;
+	color: #55eb34;
+	padding-bottom: 20px;
+}
+.nincskeszleten {
+	color: #f26d7a;
+	
+}
+
+.btn.btn-green {
+        background-color: #248a51;
+        color: #ffffff;
+}
+.btn.btn-green:hover {
+        background-color: #017d75;
+}
+.btn.btn-orange {
+        background-color: #D38901;
+        color: #ffffff;
+}
+.btn.btn-orange:hover {
+        background-color: #ea3;
+}
+.btn.btn-blue {
+        background-color: #003399;
+        color: #ffffff;
+}
+.btn.btn-blue:hover {
+        background-color: #0062cc;
+}
+
+.flexcols {
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+}
+.flexitem {
+    margin: auto;
+}
+.flexitem a{
+    margin: 10px 20px;
+}
+.alert {
+    display: block;
+    padding: 10px 20px;
+    margin: 20px 0px;
+    font-size: 16px;
+}
+
+.alert-info {
+    background: #FFD70C;
+}
