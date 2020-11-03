@@ -23,6 +23,7 @@
 
 	<!-- CSS -->
 	<link rel="stylesheet" type="text/css" href="<?= base_url().TEMAMAPPA;?>/azur/css/style.css">
+	<link rel="stylesheet" type="text/css" href="<?= base_url().TEMAMAPPA;?>/azur/css/extra.css">
 	<!-- CSS -->
 
 	<!-- jQuery -->
@@ -34,8 +35,7 @@
 	<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 	<!-- slick -->
         
-        <!-- jQuery  -->
-	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+        
         <?= globalisMemoria("fejlec-scriptek");?>
 </head>
 

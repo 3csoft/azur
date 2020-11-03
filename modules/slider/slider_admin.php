@@ -95,14 +95,17 @@ class Slider_admin extends MY_Modul {
                 if (!empty($lista)) {
                     foreach ($lista as $k => $kepSor) {
                         $lista[$k]->kep = '<a href="' . base_url() . $kepSor->kep . '" title="" target="_blank" class="pic-container" style="background-image: url(\'' . base_url() . ws_image($kepSor->kep, 'medium') . '\');"></a>';
-                        $lista[$k]->leiras = '<div class="input-container "><input class="sliderinput" value="' . $kepSor->leiras . '" type="text" name="sleiras[' . $kepSor->id . ']" /></div>';
+                        $lista[$k]->leiras = '<div class="input-container "><taxtarea class="sliderinput"  name="sleiras[' . $kepSor->id . ']" >' . htmlspecialchars($kepSor->leiras) . '</textarea></div>';
+                        $lista[$k]->szin = '<div class="input-container "><input class="sliderinput" value="' . $kepSor->szin . '" type="text" name="szin[' . $kepSor->id . ']" /></div>';
+                    
+                        
                     }
                     // táblázat beállítás
                     $tablazat = new ALGTablazat();
                     $tablazat->adatBeallitas('keresoMezok', false);
                     //$tablazat->adatBeallitas('szerkeszto_url', 'beallitasok/menuszerkesztes/');
                     //$tablazat->adatBeallitas('torles_url', 'beallitasok/menutorles/');
-                    $tablazat->adatBeallitas('megjelenitettMezok', array('kep' => 'Kép', 'leiras' => 'Leírás', 'sorrend' => 'Sorrend'));
+                    $tablazat->adatBeallitas('megjelenitettMezok', array('kep' => 'Kép', 'leiras' => 'Leírás','szin' => 'Szín', 'sorrend' => 'Sorrend'));
                     $tablazat->adatBeallitas('lista', $lista);
                     $tablazat->sorrendezheto();
                     return $tablazat->kimenet();
@@ -157,6 +160,13 @@ class Slider_admin extends MY_Modul {
                     $this->ci->Sql->sqlUpdate($a, DBP . 'slider_kepek');
                 }
             }
+            if ($this->ci->input->post('szin')) {
+                $szin = $this->ci->input->post('szin');
+                foreach ($szin as $kid => $leiras) {
+                    $a = array('id' => $kid, 'szin' => $leiras);
+                    $this->ci->Sql->sqlUpdate($a, DBP . 'slider_kepek');
+                }
+            }
             if (!$ci->input->post('ddsorrend'))
                 redirect(ADMINURL . 'slider/lista?m=' . 'Sikeres módosítás.');
         }
@@ -181,8 +191,11 @@ class Slider_admin extends MY_Modul {
             if (!empty($lista)) {
                 foreach ($lista as $k => $kepSor) {
                     $lista[$k]->kep = '<a href="' . base_url() . $kepSor->kep . '" title="" target="_blank" class="pic-container" style="background-image: url(\'' . base_url() . ws_image($kepSor->kep, 'medium') . '\');"></a>';
-                    $lista[$k]->leiras = '<div class="input-container "><input class="sliderinput" value="' . htmlspecialchars($kepSor->leiras) . '" type="text" name="sleiras[' . $kepSor->id . ']" /></div>';
+                    $lista[$k]->leiras = '<div class="input-container "><textarea class="sliderinput" name="sleiras[' . $kepSor->id . ']" >' . htmlspecialchars($kepSor->leiras) . '</textarea></div>';
                     $lista[$k]->torlo = '<input type="checkbox" name="t[' . $kepSor->id . ']" value="' . $kepSor->id . '"> - törlés';
+                    $lista[$k]->szin = '<div class="input-container "><input class="sliderinput" value="' . $kepSor->szin . '" type="text" name="szin[' . $kepSor->id . ']" /></div>';
+                    
+                    
                 }
                 // táblázat beállítás
                 $ALG->tartalomHozzaadas('<div class="ajaxVisszairas">');
@@ -191,7 +204,7 @@ class Slider_admin extends MY_Modul {
                 $tablazat->adatBeallitas('keresoMezok', false);
                 //$tablazat->adatBeallitas('szerkeszto_url', 'beallitasok/menuszerkesztes/');
                 //$tablazat->adatBeallitas('torles_url', 'beallitasok/menutorles/');
-                $tablazat->adatBeallitas('megjelenitettMezok', array('kep' => 'Kép', 'leiras' => 'Leírás', 'torlo' => 'Törlés', 'sorrend' => 'Sorrend'));
+                $tablazat->adatBeallitas('megjelenitettMezok', array('kep' => 'Kép', 'leiras' => 'Leírás','szin' => 'Szín', 'torlo' => 'Törlés', 'sorrend' => 'Sorrend'));
                 $tablazat->adatBeallitas('lista', $lista);
                 $tablazat->sorrendezheto();
                 // táblázat beállítás vége

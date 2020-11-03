@@ -1,16 +1,1 @@
-<?php if ($lista):?>
-<!-- start: main-banner -->
-<div class="main-banner">
-    <div class="slider">
-		<?php foreach($lista as $sor):?>
-        <div class="slide">
-            <a href="" title="">
-                <img src="<?= base_url().$sor->kep; ?>" alt="">
-            </a>
-        </div>
-        <?php endforeach;?>
-        
-    </div>
-</div>
-<!-- end: main-banner -->
-<?php endif; ?>
+<?php if ($lista):?><!-- start: main-banner --><div class="main-banner-container">    <div class="wrap">        <div class="main-banner">		<?php foreach($lista as $sor):?>                                     <section class="slide">                <div class="slide-inner">                    <div class="content" style="background-color:<?= $sor->szin; ?>">                        <?= $sor->leiras;?>                    </div>                    <div class="picture" style="background-image:url('<?= base_url().$sor->kep; ?>');"></div>                </div>            </section>                    <?php endforeach;?>                </div>    </div></div><!-- end: main-banner --><?php endif; ?>

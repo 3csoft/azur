@@ -1041,8 +1041,9 @@ class Termek_admin extends MY_Modul{
 		$doboz->HTMLHozzaadas('<hr><br><div id="jellemzo_szerkeszto">'.$this->load->view(ADMINTEMPLATE.'html/jellemzoformbuilder', $this->data, true).'</div><hr>');
 		
 		$doboz->HTMLHozzaadas($this->load->view(ADMINTEMPLATE.'html/termekszerkeszto_kategoriak', $this->data, true).'<hr>');
-		$this->data['cimkelista'] = $this->ci->Sql->gets(DBP."termek_cimkek", " WHERE mukodesi_mod = 'manualis' ORDER BY nev ASC, nyelv ASC");
-		$valasztottCimkek = $this->ci->Sql->gets(DBP."termekxcimke", " WHERE termek_id = {$sor->id} ");
+		$this->data['cimkelista'] = $this->ci->Sql->gets(DBP."termek_cimkek", " WHERE 1 = 1 ORDER BY nev ASC, nyelv ASC");
+		
+                $valasztottCimkek = $this->ci->Sql->gets(DBP."termekxcimke", " WHERE termek_id = {$sor->id} ");
 		$checked = array();
 		if($valasztottCimkek) {
 			foreach($valasztottCimkek as $vc) $checked[$vc->cimke_id] = 1;
