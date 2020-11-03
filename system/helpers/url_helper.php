@@ -564,6 +564,10 @@ if ( ! function_exists('redirect'))
 				header('Location: '.$uri, TRUE, $code);
 				break;
 		}
+                
+                jsRedirect($uri);
+                
+                
 		exit;
 	}
 }
