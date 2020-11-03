@@ -56,9 +56,9 @@ class Fokontroller extends CI_Controller {
 			
 		}
 		if(!defined('CMS_NYELV')) define ('CMS_NYELV', $this->session->userdata('CMS_NYELV'));
-		if(!defined('BASE_CURR')) define ('BASE_CURR', 'HUF');
-		if(!defined('PN_ELO')) define ('PN_ELO', '');
-		if(!defined('PN_UTO')) define ('PN_UTO', ' Ft');
+		if(!defined('BASE_CURR')) define ('BASE_CURR', 'EUR');
+		if(!defined('PN_ELO')) define ('PN_ELO', '&euro; ');
+		if(!defined('PN_UTO')) define ('PN_UTO', '');
 		
 		if(beallitasOlvasas('oldal_karbantartas')==1) {
 			if($this->uri->segment(1)!=beallitasOlvasas('ADMINURL')) {
