@@ -4,5 +4,5 @@
 assets
 /public/.htaccess
 /data
-/public/data
-/nbproject/private/
+/public
+/nbproject/
