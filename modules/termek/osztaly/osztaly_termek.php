@@ -1048,7 +1048,7 @@ class Termek_osztaly extends MY_Model {
 
 	
 
-	public function jellemzo($nev, $nyelv = 'hu') {
+	public function jellemzo($nev, $nyelv = 'fr') {
 
 		if(empty($this->jellemzok)) {
 
@@ -1062,7 +1062,7 @@ class Termek_osztaly extends MY_Model {
 			// szöveges tartalom
 
 			if(isset($this->jellemzok[$nev]->adat[$nyelv])) return $this->jellemzok[$nev]->adat[$nyelv];
-
+                        
 			// egyéb tartalom
 
 			if(isset($this->jellemzok[$nev]->adat)) return $this->jellemzok[$nev]->adat;

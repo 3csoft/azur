@@ -3,230 +3,277 @@
 <html>
 <head>
 	<meta charset="UTF-8" />
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+
+	<!-- Primary Meta Tags -->
 	<title><?= ws_seo('cim'); ?></title>
 	<meta name="description" content="<?= ws_seo('leiras'); ?>">
-	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
-	<meta name="google-signin-scope" content="profile email">
-    <meta name="google-signin-client_id" content="<?= beallitasOlvasas('google-signin-client_id')?>">
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
-	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-	<!-- FACEBOOK LOGIN -->
-		<script>
-		window.fbAsyncInit = function() {
-			FB.init({
-			appId      : '<?= beallitasOlvasas('facebook-app-id');?>',
-			cookie     : true,
-			xfbml      : true,
-			version    : 'v3.2'
-			});
-      
-			FB.AppEvents.logPageView();   
-      
-		};
-
-		(function(d, s, id){
-			var js, fjs = d.getElementsByTagName(s)[0];
-			if (d.getElementById(id)) {return;}
-			js = d.createElement(s); js.id = id;
-			js.src = "https://connect.facebook.net/en_US/sdk.js";
-			fjs.parentNode.insertBefore(js, fjs);
-		}(document, 'script', 'facebook-jssdk'));
-		</script>	
-
-	<!-- Fonts -->
-
-	<!-- Fonts -->
-
-	<!-- CSS -->
-	<link rel="stylesheet" type="text/css" href="<?= base_url().TEMAMAPPA;?>/honda/css/style.css?r=1">
-	<link rel="stylesheet" type="text/css" href="<?= base_url().TEMAMAPPA;?>/honda/css/extra.css?r=3">
-		<!-- Slick -->
-	<link rel="stylesheet" type="text/css" href="<?= base_url().TEMAMAPPA;?>/honda/slick/slick.css"/>
-	<link rel="stylesheet" type="text/css" href="<?= base_url().TEMAMAPPA;?>/honda/slick/slick-theme.css"/>
-	<!-- CSS -->
-
-	<!-- jQuery  -->
-	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
-	<?= globalisMemoria("fejlec-scriptek");?>
-</head>
-<body id="top">
-	<div class="loading">Loading&#8230;</div>
+	<meta name="title" content="<?= ws_seo('cim'); ?>">
 	
-	<!-- start: fb plugin -->
-	<div id="fb-root"></div>
-	<script async defer crossorigin="anonymous" src="https://connect.facebook.net/hu_HU/sdk.js#xfbml=1&version=v3.2"></script>
-	<!-- end: fb plugin -->
+	<!-- Open Graph / Facebook -->
+	<meta property="og:type" content="website">
+	<meta property="og:url" content="<?= base_url(); ?>">
+	<meta property="og:title" content="<?= ws_seo('cim'); ?>">
+	<meta property="og:description" content="<?= ws_seo('leiras'); ?>">
+	<meta property="og:image" content="https://url/image.png">
 
-	<!-- start: header -->
-	<header class="header">
+	<!-- Fonts -->
+	<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200;400;600;700&display=swap" rel="stylesheet">
+	<!-- Fonts -->
+
+	<!-- CSS -->
+	<link rel="stylesheet" type="text/css" href="<?= base_url().TEMAMAPPA;?>/azur/css/style.css">
+	<!-- CSS -->
+
+	<!-- jQuery -->
+	<script src="//code.jquery.com/jquery-latest.min.js"></script>
+	<!-- jQuery -->
+
+	<!-- slick -->
+	<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+	<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+	<!-- slick -->
+        
+        <!-- jQuery  -->
+	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+        <?= globalisMemoria("fejlec-scriptek");?>
+</head>
+
+<body>
+    <div class="loading">Loading&#8230;</div>
+	
+	
+	<!-- start: added-to-favs -->
+	<div class="added-to-favs">
+
+		<!-- if product added to favorites, it will be shown for 5 seconds
+		<div class="added-to-favs-inner">
+			<div class="added-to-favs-title">
+				Kedvencekhez adva
+				<div class="added-to-favs-close"></div>
+			</div>
+			<div class="added-to-favs-content">
+				<p>A következő termék: <a href="" title="" class="product-link">Lorem ipsum dolor sit</a> sikeresen a <a href="" title="">kedvencekhez</a> lett adva.</p>
+			</div>
+		</div>
+		-->
+
+		<!-- if another product added to favorites, it will be shown for 5 seconds etc.
+		<div class="added-to-favs-inner">
+			<div class="added-to-favs-title">
+				Kedvencekhez adva
+				<div class="added-to-favs-close"></div>
+			</div>
+			<div class="added-to-favs-content">
+				<p>A következő termék: <a href="" title="" class="product-link">Lorem ipsum dolor sit amet lorem ipsum</a> sikeresen a <a href="" title="">kedvencekhez</a> lett adva.</p>
+			</div>
+		</div>
+		-->
+
+	</div>
+	<!-- end: added-to-favs -->
+
+	<!-- start: top-info -->
+	<div class="top-info">
 		<div class="wrap">
 
-			<div class="header-container">
+			<div class="usp"><span><?= $fejlec_felirat1;?></span></div>
 
-				<a href="<?= base_url();?>" title="" class="logo logo-motor"></a>
-				<a href="<?= base_url();?>" title="" class="karsa-logo"></a>
+			<div class="slogan"><?= $fejlec_felirat2; ?></div>
 
-				<div class="mobile-menu"></div>
-				<div class="login-menu"></div>
-				<div class="search-menu"></div>
-				<a href="<?= base_url();?>kosar" title="" class="cart-menu"></a>
-				<?php if($fejleclink_felirat!=""):?>
-				<div class="back-to-homepage">
-					<a href="<?= $fejleclink_url; ?>" title=""><?= $fejleclink_felirat;?></a>
-				</div>
-				<?php endif; ?>
+			<div class="controls">
 
-				<div class="search-login">
-					<div class="search">
-						<input type="text" id="top-search" placeholder="Keresés..." onchange="window.location.href='<?= base_url(); ?>kereses/'+$(this).val();">
-						<label for="top-search"></label>
-					</div>
-					<div class="login">
-						<?php $tag = ws_belepesEllenorzes(); if($tag):?>
-						<a href="<?= base_url();?>?logout" title="Kilépés">Kilépés</a>
-						<a href="<?= base_url();?>fiokom" title="Kilépés">Fiókom</a>
-						
-						<?php if($tag->adminjogok>0):?>
-						
-						<a href="<?= base_url().beallitasOlvasas('ADMINURL');?>" target="_blank" title="Kilépés">Admin</a>
-						<?php endif;?>
-						<?php else : ?>
-						<a href="<?= base_url();?>regisztracio" title="Regisztráció">Regisztráció</a>
-						<a href="<?= base_url();?>belepes" title="">Bejelentkezés</a>
-						<?php endif; ?>
-					</div>
-				</div>
+				<!-- languages -->
+				<ul class="control-block">
+					<li><a href="" title="">EN</a></li>
+					<li><a href="" title="">DE</a></li>
+					<li><a href="" title="" class="active">FR</a></li>
+				</ul>
 
-				<nav class="nav">
-					<ul>
-						
-						<?php foreach(ws_frontendMenupontok(1) as $sor):?>
-						<li><a href="<?= base_url().$sor->url;?>" title="<?= $sor->felirat;?>" class="<?= $sor->aktiv==true?'active':'';?>"><?= $sor->felirat; ?></a></li>
-						<?php endforeach; ?>
-					</ul>
-				</nav>
-
-				<div class="cart kosarwidget">
-					
-				</div>
+				<!-- currencies -->
+				<ul class="control-block">
+					<li><a href="" title="">USD</a></li>
+					<li><a href="" title="" class="active">EUR</a></li>
+				</ul>
 
 			</div>
 
 		</div>
+	</div>
+	<!-- end: top-info -->
+
+	<!-- start: header -->
+	<header class="header">
+
+		<div class="wrap">
+
+			<div class="menu">
+				<div class="menu-icon"><ins></ins></div>
+				<div class="text"><?= __f('Catégories', 'base');?></div>
+			</div>
+
+			<a href="<?= base_url();?>" title="Bijoux Azur" class="logo"></a>
+
+			<div class="icons">
+				<div class="search-icon"><div class="icon"></div></div>
+				<a href="" title="" class="favorites-icon"><div class="icon"><div class="counter">0</div></div></a>
+				<a href="" title="" class="cart-icon"><div class="icon"><div class="counter">3</div></div><div class="total">€ 29.90</div></a>
+			</div>
+
+		</div>
+
+		<!-- navigation -->
+		<nav class="nav">
+			<div class="close"></div>
+			<div class="wrap">
+				<div class="nav-container">
+
+					<div class="nav-title-container">
+						<div class="nav-title"><?= __f('Catégories', 'base'); ?></div>
+						<a href="" title=""><?= __f('Minden termék', 'base'); ?></a>
+					</div>
+
+					<ul class="nav-categories">
+                                                <?php ws_autoload('termek');$kategoriak = new Kategoriak_osztaly;
+foreach ($kategoriak->kategoriaLista() as $kategoria):?>
+						<li>
+                                                    <a href="<?= base_url().beallitasOlvasas('termekek.oldal.url').'/'.$kategoria->slug ;?>>" title="<?= $kat->nev;?>">
+								<div class="thumbnail">
+									<img src="<?= base_url().ws_image($kategoria->kep, 'mediumboxed')?>" alt="Bagues">
+								</div>
+								<div class="text"><?= __f($kategoria->nev, 'basic'); ?></div>
+							</a>
+						</li>
+						<?php endforeach;?>
+                                                
+					</ul>
+
+					<div class="nav-title-container">
+						<div class="nav-title"><?= __f('Menu','basic'); ?></div>
+					</div>
+
+					<ul class="nav-menu">
+						<li><a href="" title=""><?= __f('Rólam &amp; elérhetőség', 'base'); ?></a></li>
+						<li><a href="" title=""><?= __f('Showrooms', 'base'); ?></a></li>
+						<li><a href="" title=""><?= __f('Hírek, vásárok', 'base'); ?></a></li>
+					</ul>
+
+				</div>
+			</div>
+		</nav>
+
+		<!-- search dropdown -->
+		<div class="search">
+			<div class="close"></div>
+			<div class="wrap">
+				<div class="search-container">
+
+					<div class="search-title-container">
+						<input id="main-search" type="text" placeholder="Keresés...">
+						<label for="main-search"></label>
+						<a href="#" title="<?= __f('Törlés...', 'base'); ?>" class="delete"></a>
+					</div>
+
+					<div class="search-results">
+						<ul>
+							<li>Sajnos nincs találat.</li>
+							<li>
+								<a href="" title="" class="product-result">
+									<div class="thumbnail"><img src="<?= base_url().TEMAMAPPA;?>/azur//pics/category-thumbnail-100x100-sample.jpg" alt="Bagues"></div>
+									<div class="text">Terméknév találat lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor</div>
+								</a>
+							</li>
+							<li>
+								<a href="" title="" class="product-result">
+									<div class="thumbnail"><img src="<?= base_url().TEMAMAPPA;?>/azur//pics/category-thumbnail-100x100-sample.jpg" alt="Bagues"></div>
+									<div class="text">Terméknév találat lorem</div>
+								</a>
+							</li>
+							<li>
+								<a href="" title="" class="product-result">
+									<div class="thumbnail"><img src="<?= base_url().TEMAMAPPA;?>/azur//pics/category-thumbnail-100x100-sample.jpg" alt="Bagues"></div>
+									<div class="text">Terméknév találat lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor</div>
+								</a>
+							</li>
+							<li>
+								<a href="" title="" class="product-result">
+									<div class="thumbnail"><img src="<?= base_url().TEMAMAPPA;?>/azur//pics/category-thumbnail-100x100-sample.jpg" alt="Bagues"></div>
+									<div class="text">Terméknév találat lorem</div>
+								</a>
+							</li>
+							<li>
+								<a href="" title="" class="product-result">
+									<div class="thumbnail"><img src="<?= base_url().TEMAMAPPA;?>/azur//pics/category-thumbnail-100x100-sample.jpg" alt="Bagues"></div>
+									<div class="text">Terméknév találat lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor</div>
+								</a>
+							</li>
+							<li><a href="" title=""><div class="text">Kategória találat</div></a></li>
+							<li><a href="" title=""><div class="text">Kategória találat lorem</div></a></li>
+							<li><a href="" title=""><div class="text">Kategória találat</div></a></li>
+							<li><a href="" title=""><div class="text">Kategória találat lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem</div></a></li>
+							<li><a href="" title=""><div class="text">Kategória találat</div></a></li>
+							<li><a href="" title=""><div class="text">Kategória találat</div></a></li>
+							<li><a href="" title=""><div class="text">Alapanyag találat</div></a></li>
+							<li><a href="" title=""><div class="text">Alapanyag találat</div></a></li>
+							<li><a href="" title=""><div class="text">Alapanyag találat</div></a></li>
+							<li><a href="" title=""><div class="text">Alapanyag találat</div></a></li>
+							<li><a href="" title=""><div class="text">Alapanyag találat</div></a></li>
+							<li><a href="" title=""><div class="text">Alapanyag találat</div></a></li>
+						</ul>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
 	</header>
 	<!-- end: header -->
 
 	<!-- start: main -->
 	<main class="main">
-		<div class="wrap">
-			<!-- start: breadcrumb -->
-			<div class="breadcrumb">
-				<ul>
-					<li><a href="<?= base_url(); ?>" title="">Főoldal</a></li>
-					<?php $utvonal = globalisMemoria('utvonal');if($utvonal):foreach($utvonal as  $elem):?>
-					<li>
-						<?php if(isset($elem['url'])): ?>
-						<a href="<?= base_url(). $elem['url'];?>" title="<?= $elem['felirat'];?>"><?= $elem['felirat'];?></a>
-						<?php else: ?>
-						<?= $elem['felirat'];?>
-						<?php endif; ?>
-					</li>
-					<?php endforeach;endif; ?>
-				</ul>
-			</div>
-			
-                        <?php $ci = getCI();$oldal = $ci->uri->segment(1);if($oldal=='') $oldal = 'fooldal';?>
-                        <?php if(beallitasOlvasas("info_".$oldal)):?>
-                        <div class="alert alert-info"><?= beallitasOlvasas("info_".$oldal);?></div>
-                        <?php endif;?>
-                        
-                        
-			<?= $modulKimenet; ?>
 
-		</div>
+		<?= $modulKimenet; ?>
+
 	</main>
 	<!-- end: main -->
 
 	<!-- start: footer -->
 	<footer class="footer">
-
 		<div class="wrap">
 
-			<div class="footer-boxes">
+			<div class="footer-logo"></div>
 
-				<div class="box-container">
-					<div class="box">
-						<div class="box-title"><?= $doboz1_cim;?></div>
-						<div class="box-content">
-							<p><?= $doboz1_szoveg;?></p>
-							<p><a href="<?= base_url().$doboz1_linkurl ?>" title="<?= $doboz1_linkszoveg;?>" class="more"><?= $doboz1_linkszoveg;?></a></p>
-						</div>
-					</div>
-				</div>
-
-				<div class="box-container">
-					<div class="box">
-						<div class="box-title"><?= $doboz2_cim;?></div>
-						<div class="box-content">
-							<p><?= $doboz2_szoveg;?></p>
-							<p><a href="<?= base_url().$doboz2_linkurl ?>" title="<?= $doboz2_linkszoveg;?>" class="more"><?= $doboz2_linkszoveg;?></a></p>
-						</div>
-					</div>
-				</div>
-
+			<ul class="footer-categories">
+                            <?php foreach ($kategoriak->kategoriaLista() as $kategoria): ?>
+                            <li><a href="<?= base_url().beallitasOlvasas('termekek.oldal.url').'/'.$kategoria->slug ;?>" title="<?= __f($kategoria->nev, 'basic'); ?>"><?= __f($kategoria->nev, 'basic'); ?></a></li>
+                            <?php endforeach;?>
 				
-					
-				
+			</ul>
 
-				<div class="box-container">
-					<div class="box">
-						<div class="box-title"><?= $doboz3_cim;?></div>
-						<div class="box-content">
-							<div class="fb-page" data-href="<?= $doboz3_fburl;?>" data-small-header="true" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="<?= $doboz3_fburl;?>" class="fb-xfbml-parse-ignore"><a href="<?= $doboz3_fburl;?>"><?= $doboz3_fburl;?></a></blockquote></div>
-						</div>
-					</div>
-				</div>
+			<p class="footer-info">
+                            
+				Éva Huszár - Créatrice de bijoux<br>
+				Téléphone: <a href="+3348328519" title="téléphone">+33 48 32 85 19</a>, E-mail: <a href="mailto:info@bijouxazur.fr" title="e-mail">info@bijouxazur.fr</a><br>
+				Numéro siret: 522 281 088 00024<br>
+				15 rue de Hirtzfelden, 68740 Rustenhart, France
+			</p>
 
-				<div class="box-container">
-					<div class="box">
-						<div class="box-title"><?= $doboz4_cim;?></div>
-						<div class="box-content">
-							<?= $doboz4_html;?>
-						</div>
-					</div>
-				</div>
+			<ul class="footer-links">
+				<li><a href="" title=""><?= __f('Rólam &amp; Kapcsolat', 'base'); ?></a></li>
+				<li><a href="" title=""><?= __f('Showrooms', 'base'); ?></a></li>
+				<li><a href="" title=""><?= __f('Hírek, vásárok', 'base'); ?></a></li>
+				<li><a href="" title=""><?= __f('Szállítás &amp; fizetés', 'base'); ?></a></li>
+			</ul>
 
-			</div>
+			<div class="credit-cards"></div>
 
 		</div>
-
-		<div class="copyright">
-			<div class="wrap clearfix">
-					<div class="left"><?= $footercopyright; ?></div>
-					<div class="right">
-						<a href="#top" title="" class="go-to-top"></a>
-					</div>
-			</div>
-		</div>
-
 	</footer>
 	<!-- end: footer -->
 
-	<!-- start: seo-content -->
-	<section class="seo-content">
-		<div class="wrap clearfix">
-			<?= nl2br(ws_seo('hosszuleiras'));?>
-		</div>
-	</section>
-	<!-- end: seo-content -->
-
-
-
 	<!-- script -->
-	<script type="text/javascript" src="<?= base_url().TEMAMAPPA;?>/honda/slick/slick.min.js"></script>
-	<script type="text/javascript" src="<?= base_url().TEMAMAPPA;?>/honda/js/honda-webshop.js"></script>
-	
-<script>
+	<script type="text/javascript" src="<?= base_url().TEMAMAPPA;?>/azur/js/bijouxazur.js"></script>
+        <script>
 function isEmail(email) {
     var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(email);
@@ -551,10 +598,6 @@ var siteJs = {};
 	$().ready(function(){ siteJs.fatyolStop(); window.onbeforeunload = function(event) {  siteJs.fatyolStart(); };});
 	</script>
 	<?= globalisMemoria('lablec-scriptek'); ?>
-        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/cookie-bar/cookiebar-latest.min.js?forceLang=hu&tracking=1&always=1"></script>
+            <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/cookie-bar/cookiebar-latest.min.js?forceLang=fr&tracking=1&always=1"></script>
 </body>
 </html>
-
-
-
-	

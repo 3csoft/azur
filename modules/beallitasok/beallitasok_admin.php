@@ -866,9 +866,9 @@ public function menulista() {
 
 		$doboz->dobozCim( 'Áruház beállítások', 2);
 
-		//$gordulo1 = new Legordulo(array('felirat' => 'Alapértelmezett devize','opciok' => array('HUF' => 'Magyar forint'),'nevtomb' => 'a', 'mezonev' => 'aruhaz_alapdeviza', 'ertek' => beallitasOlvasas('aruhaz_alapdeviza')));
+		$gordulo1 = new Legordulo(array('felirat' => 'Alapértelmezett devize','opciok' => array('EUR' => 'EURO', 'USD' => 'USD'),'nevtomb' => 'a', 'mezonev' => 'aruhaz_alapdeviza', 'ertek' => beallitasOlvasas('aruhaz_alapdeviza')));
 
-		//$doboz->duplaInput($gordulo1);
+		$doboz->duplaInput($gordulo1);
 
 		$input1 = new Szovegmezo(array('felirat' => 'Szamlazz.hu felhasználó', 'tipus' => 'szoveg','attr' => '  ','nevtomb' => 'a', 'mezonev' => 'szamlazz_user', 'ertek' => beallitasOlvasas('szamlazz_user'))) ;
 		$input2 = new Szovegmezo(array('felirat' => 'Szamlazz.hu jelszó', 'tipus' => 'jelszo','attr' => '  ','nevtomb' => 'a', 'mezonev' => 'szamlazz_jelszo', 'ertek' => beallitasOlvasas('szamlazz_jelszo'))) ;

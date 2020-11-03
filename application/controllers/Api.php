@@ -253,7 +253,11 @@ class Api extends CI_Controller {
 
     public function termeklista_full() {
         define("DBP", '');
-
+        
+        if(@$_GET['s']!='fd7/kjfd') die();
+        
+        
+        
         $sql = "SELECT id FROM termekek";
         $termekIdk = $this->Sql->sqlSorok($sql);
         //print_r($termekIdk);
@@ -276,8 +280,7 @@ class Api extends CI_Controller {
         
         $tt = array('id' => '6', 'cikkszam' => '0639266328780',  'ar' => '8267.71',  'gyarto' => '18', 'termek_csoport' => '2',  'letrehozva' => '2020-06-23 14:10:52', 'modositva' => '2020-10-15 10:42:26');
         foreach ($tt as $k => $v) {
-            
-            print '"' . $k . '";';
+            if($k=='ar') print '"netto_ar";'; else print '"' . $k . '";';
         }
         print "kategoriak;cimkek;valtozatok;keszlet;kepek;keresostring;";
         
@@ -338,11 +341,16 @@ class Api extends CI_Controller {
                 }
                 
                 $arr = array();
-                if (!empty($t->ketagoriaTagsag))
+                if (!empty($t->ketagoriaTagsag)) {
                     foreach ($t->ketagoriaTagsag as $v) {
                         $a = $this->Sql->get($v, "kategoriak", 'id');
                         $arr[] = $a->nev;
                     }
+                } else {
+                    $arr[] = "***nincs***";
+                    
+                    
+                }
                 $push['kategoria'] =implode(",", $arr);
                 $kategoria = '"' . implode(",", $arr) . '";';
                 print $kategoria;
@@ -410,7 +418,7 @@ class Api extends CI_Controller {
                  
                 
                 
-                $str = $this->Sql->get($t->id, 'termek_kereso_hu', 'id');
+                $str = $this->Sql->get($t->id, 'termek_kereso_hu', 'termek_id');
 
                 print '"' . htmlspecialchars($str->keresostr) . '";';
                 $push['keresostr'] =htmlspecialchars($str->keresostr);
@@ -453,10 +461,9 @@ class Api extends CI_Controller {
         ob_end_clean();
 
         $nev = 'osszes_termekek_' . date("Y-m-d");
-
-        var_dump(file_put_contents(ROOTPATH . 'data/' . $nev . '.csv', $o));
-        print 'data/' . $nev . '.csv kiirva <br>';
-
+        //print ROOTPATH . 'data/export/' . $nev . '.csv';
+        file_put_contents(ROOTPATH . 'data/export/' . $nev . '.csv', $o);
+        redirect(base_url().'webshopadmin/termek/csveleres');
     }
 
     public function heti() {

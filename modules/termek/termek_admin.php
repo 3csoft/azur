@@ -7,7 +7,60 @@ class Termek_admin extends MY_Modul{
 		parent::__construct();
 		include_once('osztaly/osztaly_termeklista.php');
 	}
-	
+        public function csveleres() {
+            
+            if(isset($_GET['dl'])) {
+                
+                $file = ROOTPATH . 'data/export/'.$_GET['dl'];
+                if(is_file($file)) {
+                    header("Content-type: text/csv");
+                    header("Content-Disposition: attachment; filename=".$_GET['dl']);
+                    header("Pragma: no-cache");
+                    header("Expires: 0");
+                    
+                    print (file_get_contents($file));
+                    
+                    die();
+                    
+                } else {
+                    
+                }
+            }
+            
+            globalisMemoria("Nyitott menüpont",'Termékek');
+            $ci = getCI();
+
+            
+            globalisMemoria('utvonal', array(array('url' => 'termek/csveleres', 'felirat' => 'Export fileok') ));
+
+            $ALG = new Adminlapgenerator;
+
+            $ALG->adatBeallitas('lapCim', "Export Listák");
+
+            $ALG->adatBeallitas('fejlecGomb', array('url' => base_url().'api/termeklista_full?s=fd7/kjfd', 'felirat' => 'Generálás') );
+            
+            $ALG->tartalomDobozStart();
+            
+            $doboz = $ALG->ujDoboz();
+            $doboz->HTMLHozzaadas("Kattints a letöltéshez");
+            $dir = scandir(ROOTPATH . 'data/export/');
+            $str = '';
+            foreach($dir as $file) {
+                if($file == '.' or $file == '..') continue;
+                $str .= '<a href="?dl='.$file.'&r='.rand(1,9898798).'">'.$file.'</a><br>';
+                
+            
+            }
+            $doboz->HTMLHozzaadas($str);
+            $doboz->HTMLHozzaadas("<br><a href=\"/assets/termekkepek20201029.tgz\">Képek mappa</a>");
+            
+            $ALG->tartalomDobozVege();
+
+		
+
+            return $ALG->kimenet();
+		
+        }
 	/*
 	 * termek_armodositocsoportlista
 	 * 
@@ -440,7 +493,7 @@ class Termek_admin extends MY_Modul{
 			$termek = new Termek_osztaly($sor->id);
 			
 			
-            $sor->keszlet = '<a href="'.ADMINURL.'keszletek/darabszam?s='.$termek->id.'" target="_blank">&#8599;</a>';
+                        $sor->keszlet = '<a href="'.ADMINURL.'keszletek/darabszam?s='.$termek->id.'" target="_blank">&#8599;</a>';
 			
 			$sor->nev = '<a target="_blank" title="Előnézet" href="'.$termek->link().'">'.$termek->jellemzo('Név').'</a>';
 			if($termek->termekszulo_id!=0) $sor->nev = '<span style="color:#5F00D8">'.$sor->nev.'</span>';
@@ -498,10 +551,15 @@ class Termek_admin extends MY_Modul{
 		$ci->db->query("DELETE FROM ".DBP."termekek WHERE id = $id");
 		// bentmaradt jellemzők
 		
-		$sql = "DELETE FROM ".DBP."termek_kereso_hu WHERE termek_id NOT IN (SELECT id FROM termekek)";
-		$ci->db->query($sql);
-		$sql = "DELETE FROM ".DBP."termek_mezok_hu WHERE termek_id NOT IN (SELECT id FROM termekek)";
-		$ci->db->query($sql);
+                
+                $nyelvek = explode(',', beallitasOlvasas('nyelvek'));
+		foreach($nyelvek as $nyelvKod) {
+                    $sql = "DELETE FROM ".DBP."termek_kereso_$nyelvKod WHERE termek_id NOT IN (SELECT id FROM termekek)";
+                    $ci->db->query($sql);
+                    $sql = "DELETE FROM ".DBP."termek_mezok_$nyelvKod WHERE termek_id NOT IN (SELECT id FROM termekek)";
+                    $ci->db->query($sql);
+
+                }
 		
 		
 		redirect(ADMINURL.'termek/lista?m='.urlencode("Törlés sikeres"));
@@ -561,12 +619,14 @@ class Termek_admin extends MY_Modul{
 		$termek_kepek = $ci->Sql->sqlSorok("SELECT * FROM ".DBP."termek_kepek WHERE termek_id = $id");
 		
 		//print_r($termek_kepek);
+		$jellemzok = [];
+		$nyelvek = explode(',', beallitasOlvasas('nyelvek'));
+		foreach($nyelvek as $nyelvKod) {
 		
+                    $jellemzok[$nyelvKod] = $ci->Sql->sqlSor("SELECT * FROM ".DBP."termek_mezok_$nyelvKod WHERE termek_id = $id LIMIT 1");
+                }
 		
-		// TODO többnyelvűsíteni
-		$jellemzok = $ci->Sql->sqlSor("SELECT * FROM ".DBP."termek_mezok_hu WHERE termek_id = $id LIMIT 1");
-		
-		$termek = (array)$termek;
+                $termek = (array)$termek;
 		unset($termek['id']);
 		
 		$termek['cikkszam'] = $this->egyediCikkszam($termek['cikkszam']);
@@ -577,11 +637,16 @@ class Termek_admin extends MY_Modul{
 		}
 		$ujid = $this->Sql->sqlSave($termek, DBP.'termekek');
 		
-		
-		$jellemzok = (array)$jellemzok;
-		$jellemzok['termek_id'] = $ujid;
-		unset($jellemzok['id']);
-		$this->Sql->sqlSave($jellemzok, DBP.'termek_mezok_hu', 'id');
+                foreach ($jellemzok as $nyelv => $jellemzo) {
+                    if(!$jellemzo) continue;
+                    $jellemzo = (array)$jellemzok[$nyelv];
+                    $jellemzo['termek_id'] = $ujid;
+                    unset($jellemzo['id']);
+                    print $nyelv.' ';           print_r($jellemzo);
+                    $this->Sql->sqlSave($jellemzo, DBP.'termek_mezok_'.$nyelv, 'id');
+
+                    
+                }
 		
 		
 		
@@ -679,6 +744,7 @@ class Termek_admin extends MY_Modul{
 			}
 			if($id==0) {
 				$id = $this->sqlSave($a, DBP.'termekek');
+				naplozo('Admin tevékenység',0,'', "Új termék felvitele: ".$id);
 			} else {
 				$a['id'] = $id;
 				$this->sqlUpdate($a, DBP.'termekek', 'id');
@@ -898,9 +964,21 @@ class Termek_admin extends MY_Modul{
 		
 		
 		$input1 = new Szovegmezo(array('attr' => ' onchange="aJs.bruttoSzamitas();" id="arertek" ' ,'nevtomb'=>'a', 'mezonev' => 'ar', 'felirat' => 'Ár (nettó)', 'ertek' => @$sor->ar));
-		$input2 = new Szovegmezo(array('attr' => '' ,'nevtomb'=>'a', 'mezonev' => 'eredeti_ar', 'felirat' => 'Eredeti ár (nettó)', 'ertek' => @$sor->eredeti_ar));
+                
+                $selectArr = [];
+                $rs = $this->Sql->sqlSorok("SELECT * FROM ".DBP."penznemek ORDER BY nev ASC");
+		$alap = $rs[0]->kod;
+                foreach($rs as $adatSor) {
+                    if($adatSor->alapertelmezett == 1) $alap = $adatSor->kod;
+                    $selectArr[(string)$adatSor->kod] = $adatSor->nev;
+                
+                }
+                if(!isset($sor->penznem)) $sor->penznem = $alap; 
+                $select1 = new Legordulo(array('attr' => '' , 'nevtomb'=>'a', 'mezonev' => 'penznem', 'felirat' => 'Pénznem', 'ertek' => @$sor->penznem, 'opciok' => $selectArr)) ;
 		
-		$doboz->duplaInput($input1, $input2);
+                
+                
+		$doboz->duplaInput($input1, $select1);
 		
 		$afak = array();
 		$rs = $this->Sql->sqlSorok("SELECT * FROM afaertekek ORDER BY nev ASC");
@@ -910,12 +988,13 @@ class Termek_admin extends MY_Modul{
 		$brutto = 0;
 		if(isset($sor->ar)) {
 			if($sor->afa!=0) {
-				$brutto = $sor->ar + (($sor->ar/100)*$sor->afa);
+				$brutto = round($sor->ar + (($sor->ar/100)*$sor->afa),0);
 			}
 		}
-		$input = new Szovegmezo(array('nevtomb' => '', 'mezonev' => 'brutto', 'felirat' => 'Bruttó érték', 'ertek' => $brutto, 'attr' => ' onchange="aJs.nettoSzamitas();" id="bruttoertek" '));
+		//$input = new Szovegmezo(array('nevtomb' => '', 'mezonev' => 'brutto', 'felirat' => 'Bruttó érték', 'ertek' => $brutto, 'attr' => ' onchange="aJs.nettoSzamitas();" id="bruttoertek" '));
+		$input2 = new Szovegmezo(array('attr' => '' ,'nevtomb'=>'a', 'mezonev' => 'eredeti_ar', 'felirat' => 'Eredeti ár (ha akciós)', 'ertek' => @$sor->eredeti_ar));
 		
-		$doboz->duplaInput($select1, $input);
+		$doboz->duplaInput($select1, $input2);
 		
 		$gyartok = array('0' => 'Nincs megadva');
 		$rs = $this->Sql->sqlSorok("SELECT * FROM ".DBP."gyartok ORDER BY nev ASC");
@@ -926,17 +1005,17 @@ class Termek_admin extends MY_Modul{
 		$doboz->duplaInput($select1, $input);
 		
 		// készlet
-		if(isset($sor->id)) {
-                    $sql = "SELECT * FROM ".DBP."termek_keszletek WHERE termek_id = {$sor->id} AND termek_armodosito_id = 0 LIMIT 1";
-                    //print $sql;
-                    $vanDarab = $this->sqlSor($sql);
-                    $keszlet = $vanDarab->keszlet;
-                    $lefoglalva = $vanDarab->lefoglalt;
-                } else {
-                    $keszlet = 0;
-                    $lefoglalva = 0;
+		$keszlet = 0;
+        $lefoglalva = 0;
                     
-                }
+		if(isset($sor->id)) {
+            $sql = "SELECT * FROM ".DBP."termek_keszletek WHERE termek_id = {$sor->id} AND termek_armodosito_id = 0 LIMIT 1";
+            $vanDarab = $this->sqlSor($sql);
+            if($vanDarab) {
+                $keszlet = $vanDarab->keszlet;
+                $lefoglalva = $vanDarab->lefoglalt;
+            }
+        }
                 
 		$input1 = new Szovegmezo(array('attr' => '' ,'nevtomb'=>'a', 'mezonev' => 'keszlet', 'felirat' => 'Készlet (ha nincs változat)', 'ertek' => $keszlet));
 		$input2 = new Szovegmezo(array('attr' => '' ,'nevtomb'=>'a', 'mezonev' => 'lefoglalva', 'felirat' => 'lefoglalva', 'ertek' => $lefoglalva));

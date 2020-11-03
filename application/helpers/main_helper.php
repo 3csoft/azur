@@ -228,7 +228,12 @@ function ws_image($utvonal, $meret = 'big') {
 	return $path.$fname;
 	
 }
-
+function ws_printSqlHistory() {
+    $ci = getCI();
+    print '<pre>';
+    print_r($ci->db->queries);
+    print '</pre>';
+}
 function ws_hookFuttatas($belepesipont, $param) {
 	ws_moduladatok();
 	$hookBelepesiPontok = globalisMemoria('hookBelepesipontok');
@@ -451,7 +456,8 @@ function globalisMemoria($kulcs, $ertek = null, $hozzafuzes = false) {
 		return false;
 	}
         if($hozzafuzes){
-            $globalisMemoria[$kulcs] .= $ertek;
+            
+            @$globalisMemoria[$kulcs] .= $ertek;
         } else {
             $globalisMemoria[$kulcs] = $ertek;
         }
@@ -495,7 +501,7 @@ function ws_belepesEllenorzes() {
 	$tag = new Tag_osztaly($ci->session->userdata('__belepett_felhasznalo'));
 	
         if(isset($tag->id)) {
-            
+           
             if($tag->statusz!=1 && !$ci->session->userdata('tmp_allowed')) {
                 
                 $ci->session->unset_userdata('__belepett_felhasznalo');
