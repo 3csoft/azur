@@ -1,5 +1,9 @@
 <?php
-
+function jsRedirect($url) {
+    
+    echo '<script type="text/javascript" >window.location.href="'.$url.'"</script>';
+    
+}
 // ez a függvény tölti be a view-t úgy hogy ha nincs az adott témamappában, akkor a közös elemek mappában is megnézi 
 function ws_frontendView($file, $adat = null, $kimenet = false) {
 	$ci = getCI();
