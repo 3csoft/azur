@@ -3,6 +3,7 @@
 /.htaccess
 assets
 /public/.htaccess
+/public/temak
+/public/assets
 /data
-/public
-/nbproject/
+/nbproject
