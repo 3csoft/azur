@@ -369,6 +369,375 @@
     }
 
 
+    //main-heading
+    .main-heading {
+        padding: 0 10px;
+        margin: 0 0 20px;
+    }
+
+    // product-list
+    .product-list {
+        padding: 0 0 40px;
+
+        .filters {
+            padding: 0 40px 0 10px;
+
+            .filter {
+                margin: 0 0 20px;
+            }
+        }
+
+        .product-list-title {
+            margin: 0 10px 15px 10px;
+        }
+
+        .selected-filters {
+            padding: 0 10px;
+        }
+
+        .products {
+
+            li {
+                width: 33.33333%;
+                padding: 0 10px;
+                margin: 0 0 20px;
+
+                .add-to-favs {
+                    top: 5px;
+                    right: 20px;
+                }
+
+                a {
+                    .box-shadow(0 0 15px rgba(0,0,0,.02));
+
+                    .img-container {
+                        padding: 20px;
+                    }
+
+
+                    &:hover {
+                        .box-shadow(0 0 15px rgba(0,0,0,.05));
+                    }
+                }
+
+            }
+        }
+
+        .description {
+            padding: 40px 10px 0 10px;
+
+            h2 {
+                margin: 0 0 15px;
+            }
+
+            p {
+                margin: 0 0 10px;
+            }
+        }
+
+    }
+
+
+    //pagination
+    .pagination-next-page {
+
+        .next-page-btn {
+            padding: 0 30px;
+        }
+    }
+
+    .pagination {
+        margin: 0 10px;
+    }
+
+
+
+
+    //product
+    .product {
+
+        .product-container {
+            padding: 0 0 40px;
+        }
+
+        // gallery - left-side
+        .gallery {
+            padding: 0 10px;
+            width: 40%;
+
+            .slider-for {
+                margin: 0 0 20px;
+
+                .slide {
+                    padding: 20px;
+                }
+
+            }
+
+            .slider-nav {
+                margin: 0 -10px;
+
+                .slide {
+                    margin: 0 10px;
+                    padding: 10px;
+                }
+
+            }
+        }
+
+
+        // product-info - right-side
+        .product-info {
+            padding: 0 10px;
+
+            &.new, &.sale, &.free {
+
+                .badges {
+
+                    > span {
+                        padding-right: 15px;
+                    }
+                }
+            }
+
+            .badges {
+                margin: 0 0 15px;
+            }
+
+            .product-description {
+                //margin: 0 0 30px;
+                width: 100%;
+
+                p {
+                    margin: 0 0 10px;
+                }
+            }
+
+            .option-container {
+                margin: 15px 0 0;
+                padding: 15px 0;
+            }
+
+            .action-container {
+                padding: 30px 0 0;
+                margin: 0 0 30px;
+
+                .add-to-cart {
+                    padding: 0 30px;
+                }
+
+            }
+
+            .materials {
+                margin: 0 0 15px;
+
+                .materials-content {
+                    padding: 15px 0 10px;
+                }
+            }
+
+            .usp {
+
+                ul {
+
+                    li {
+                        padding: 4px 0 4px 24px;
+
+                        &:before {
+                            top: 1px;
+                        }
+                    }
+                }
+            }
+
+
+        }
+
+
+    }
+
+
+
+    // static
+    .static {
+        padding: 0 0 40px;
+
+        .static-content-container {
+            width: 60%;
+            padding: 0 10px;
+        }
+
+        .cover-pic {
+            margin: 0 0 20px;
+        }
+
+        h2 {
+            margin: 0 0 10px;
+        }
+
+        h3 {
+            margin: 0 0 10px;
+        }
+
+        p {
+            margin: 0 0 10px;
+        }
+
+        .social-share {
+            padding-top: 15px;
+        }
+
+    }
+
+
+    //news-list
+    .news-list {
+
+        li {
+            margin: 0 0 20px;
+
+            a {
+
+                .text {
+                    padding: 0 0 0 20px;
+                }
+            }
+        }
+    }
+
+
+    //cart
+
+    .cart {
+        margin: 0 0 20px;
+
+        li {
+            padding: 15px 0;
+
+            &.coupon {
+                padding: 10px 0;
+            }
+        }
+    }
+
+    .order-msg {
+        padding: 20px;
+        .box-shadow(0 0 20px rgba(0,0,0,.05));
+        margin: 5px 0 20px;
+
+        &:after {
+            .wh(28px,28px);
+            left: -14px;
+            top: -14px;
+        }
+
+        &.successful {
+
+            &:after {
+                .bg-img('../img/icon-check-white.svg',center,no-repeat,14px 14px);
+            }
+
+        }
+
+        &.unsuccessful {
+
+            &:after {
+                .bg-img('../img/icon-alert-white.svg',center,no-repeat,14px 14px);
+            }
+
+        }
+
+    }
+
+
+    .cart-empty {
+        padding: 80px 0 120px 0;
+    }
+
+    .cart-container {
+        width: 60%;
+        padding: 0 10px;
+    }
+
+
+    .btn-container {
+
+        .order-btn {
+            padding: 0 30px;
+        }
+
+    }
+
+    .checkout-cart {
+        padding: 0 10px;
+    }
+
+    //checkout
+    .checkout {
+        padding: 0 10px;
+
+        .checkout-inner {
+            margin: 0;
+        }
+
+        .checkout-block {
+            padding: 0 0 10px;
+        }
+
+        .checkout-block-title {
+            margin: 0 0 15px;
+        }
+
+
+        .double-line {
+
+            > div {
+
+                &:nth-child(odd) {
+                    margin-right: 7.5px;
+                }
+
+                &:nth-child(even) {
+                    margin-left:7.5px;
+                }
+            }
+
+        }
+
+
+        .checkbox-container {
+            margin: 0 0 15px;
+        }
+
+        .input-container {
+            margin: 0 0 15px;
+        }
+
+        .radio-container {
+            margin: 0 0 15px;
+        }
+
+    }
+
+
+    //popup - added to cart
+    .popup {
+        padding: 20px 0;
+
+        .popup-inner {
+            width: 60%;
+        }
+
+        .popup-inner-white {
+            padding: 20px;
+        }
+
+        h1 {
+            margin: 0 0 20px;
+        }
+
+    }
+
 
 
 }

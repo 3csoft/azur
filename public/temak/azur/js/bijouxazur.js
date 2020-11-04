@@ -47,15 +47,20 @@ $(document).ready(function () {
 	    if (evt.keyCode == 27) {
 	    	$('.header').removeClass('nav-active');
             $('.header').removeClass('search-active');
+            $('.popup').css("display","none");
 	    }
 	});
 
-    // click anywhere to close nav dropdowns
+    // click anywhere to close nav dropdowns & popup
 	$(document).on('click', function (e) {
 
 		if ((!$(e.target).closest('.header').length)) {
 			$('.header').removeClass('nav-active');
             $('.header').removeClass('search-active');
+		}
+
+        if ((!$(e.target).closest('.popup-inner').length)) {
+			$('.popup').css("display","none");
 		}
 
 	});
@@ -64,6 +69,12 @@ $(document).ready(function () {
 	$('.close').click(function() {
 		$('header').removeClass('nav-active');
         $('header').removeClass('search-active');
+		return false;
+	});
+
+    // popup close
+	$('.popup-close').click(function() {
+		$('.popup').css("display","none");
 		return false;
 	});
 
@@ -133,6 +144,83 @@ $(document).ready(function () {
 	});
 
 
+    // open-close filter boxes
+	$('.filter-title').click(function() {
+
+		if ($(this).parent().hasClass('filter-active')) {
+			$(this).parent().children('.filter-content').slideUp(150);
+			$(this).parent().removeClass('filter-active');
+		}
+
+		else {
+			$(this).parent().children('.filter-content').slideDown(150);
+			$(this).parent().addClass('filter-active');
+		}
+
+	});
+
+
+    $('.slider-for').slick({
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        arrows: false,
+        fade: true,
+        asNavFor: '.slider-nav'
+    });
+
+    $('.slider-nav').slick({
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        arrows: false,
+        asNavFor: '.slider-for',
+        focusOnSelect: true
+    });
+
+
+    // Fancybox call & options
+	$().fancybox({
+	    selector : '[data-fancybox]',
+		buttons: [
+	        "zoom",
+	        //"share",
+	        //"slideShow",
+	        //"fullScreen",
+	        //"download",
+	        //"thumbs",
+	        "close"
+	    ]
+	});
+
+
+
+    // open-close checkout-cart-mini
+	$('.checkout-cart-title').click(function() {
+
+		if ($(this).parent().hasClass('checkout-cart-active')) {
+			$(this).parent().children('.checkout-cart-content').slideUp(150);
+			$(this).parent().removeClass('checkout-cart-active');
+		}
+
+		else {
+			$(this).parent().children('.checkout-cart-content').slideDown(150);
+			$(this).parent().addClass('checkout-cart-active');
+		}
+
+	});
+
+    // input not empty check
+	$('.input-container input').blur(function() {
+
+	    if (!$(this).val() == '') {
+	        $(this).parent().addClass('not-empty');
+	    }
+
+		else {
+			$(this).parent().removeClass('not-empty');
+		}
+	});
+
+
     /*
 
 	// search input not empty check
@@ -157,28 +245,6 @@ $(document).ready(function () {
 	});
 
 
-    // usp slider
-	$('.usp-slider').slick({
-		dots: false,
-		arrows: false,
-		infinite: true,
-		slidesToShow: 3,
-		slidesToScroll: 3,
-		autoplay: false,
-  		autoplaySpeed: 6000,
-		responsive: [
-		    {
-		      breakpoint: 960,
-		      settings: {
-                  autoplay: true,
-		        slidesToShow: 1,
-		        slidesToScroll: 1
-		      }
-		    }
-		  ]
-  	});
-
-
     // input not empty check
 	$('.input-container input').blur(function() {
 
@@ -191,62 +257,10 @@ $(document).ready(function () {
 		}
 	});
 
-    // textarea not empty check
-	$('.input-container textarea').blur(function() {
-
-	    if (!$(this).val() == '') {
-	        $(this).parent().addClass('not-empty');
-	    }
-
-		else {
-			$(this).parent().removeClass('not-empty');
-		}
-	});
-
-    // faq open-close
-	$('.question').click(function() {
-		$(this).parent().toggleClass('item-open');
-		$(this).parent().children('.answer').slideToggle(250);
-		return false;
-	});
-
-
-    // open-close filter boxes
-	$('.filter-title').click(function() {
-
-		if ($(this).parent().hasClass('filter-active')) {
-			$(this).parent().children('.filter-content').slideUp(250);
-			$(this).parent().removeClass('filter-active');
-		}
-
-		else {
-			$(this).parent().children('.filter-content').slideDown(250);
-			$(this).parent().addClass('filter-active');
-		}
-
-	});
-
-    $('.slider-for').slick({
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        arrows: false,
-        fade: true,
-        asNavFor: '.slider-nav'
-    });
-
-    $('.slider-nav').slick({
-        slidesToShow: 3,
-        slidesToScroll: 1,
-        arrows: false,
-        asNavFor: '.slider-for',
-        focusOnSelect: true
-    });
-
     */
 
 });
 
-/*
 // Bind to the resize event of the window object
 $(window).on("resize", function () {
 	if ($(window).width() < 960) {
@@ -255,4 +269,3 @@ $(window).on("resize", function () {
 	}
 // Invoke the resize event immediately
 }).resize();
-*/

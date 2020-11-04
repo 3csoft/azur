@@ -33,9 +33,24 @@
 	<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 	<!-- slick -->
 
+	<!-- Fancybox -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.css" />
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.js"></script>
+	<!-- Fancybox -->
+
 </head>
 
 <body>
+
+	<!-- start: fb social plugin -->
+	<div id="fb-root"></div>
+	<script async defer crossorigin="anonymous" src="https://connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v8.0" nonce="GUJKcL7E"></script>
+	<!-- start: fb social plugin -->
+
+	<!-- start: loading --
+	<div class="loading"></div>
+	<!-- end: loading -->
+
 
 	<!-- start: added-to-favs -->
 	<div class="added-to-favs">
@@ -67,11 +82,56 @@
 	</div>
 	<!-- end: added-to-favs -->
 
+	<!-- start: added-to-cart popup --
+	<div class="popup">
+		<div class="wrap">
+			<div class="popup-inner">
+				<div class="popup-inner-white">
+
+					<div class="popup-close"></div>
+					<h1>Kosárba rakva</h1>
+
+					<ul class="cart">
+
+						<li class="title">
+							<div class="title-name">Produit</div>
+							<div class="title-price">Prix</div>
+						</li>
+
+						<li class="cart-item">
+							<div class="cart-item-product">
+								<div class="img-container">
+									<a href="" title="">
+										<img src="pics/product-200x200-sample.jpg" alt="">
+									</a>
+								</div>
+								<div class="content">
+									<a href="" title="" class="prod-name">Lorem ipsum dolor sit amet, consectetur adipiscing dolor sit amet</a>
+									<div class="price">€ 29.90<span class="old-price">€ 59.90</span></div>
+								</div>
+							</div>
+							<div class="cart-item-price">€ 29.90</div>
+						</li>
+
+					</ul>
+
+		            <div class="btn-container">
+		                <a href="" title="" class="order-btn">Tovább a pénztárhoz</a>
+		                <a href="" title="" class="step-back">Kosár megtekintése</a>
+		            </div>
+
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<!-- end: added-to-cart popup -->
+
 	<!-- start: top-info -->
 	<div class="top-info">
 		<div class="wrap">
 
-			<div class="usp"><span>Livraison gratuite à plus de 100 euros</span></div>
+			<div class="usp"><span>Frais de port offerts dès 100€ d'achat</span></div>
 
 			<div class="slogan">Bijoux faits main de France</div>
 
@@ -282,11 +342,15 @@
 			$url = basename($_SERVER['REQUEST_URI']);
 			switch($url)
 			{
-
-				case "loremipsum": include "loremipsum.html"; break; //loremipsum
-				case "loremipsum": include "loremipsum.html"; break; //loremipsum
-				case "loremipsum": include "loremipsum.html"; break; //loremipsum
-				case "loremipsum": include "loremipsum.html"; break; //loremipsum
+				case "unsuccessful": include "unsuccessful.html"; break; //unsuccessful - sikeretelen vásárlás visszajelzés
+				case "successful": include "successful.html"; break; //successful order - sikeres vásárlás köszönő oldal
+				case "checkout": include "checkout.html"; break; //checkout
+				case "cart": include "cart.html"; break; //cart
+				case "news": include "news.html"; break; //news
+				case "news-list": include "news-list.html"; break; //news-list
+				case "static": include "static.html"; break; //static
+				case "product": include "product.html"; break; //product
+				case "product-list": include "product-list.html"; break; //product-list
 
 				default: include("home.html"); break; //home
 			}
@@ -323,6 +387,8 @@
 				<li><a href="" title="">Rólam &amp; Kapcsolat</a></li>
 				<li><a href="" title="">Showrooms</a></li>
 				<li><a href="" title="">Hírek, vásárok</a></li>
+				<li><a href="https://www.facebook.com/bijouxazur" title="" target="_blank">Facebook</a></li>
+				<li><a href="https://www.instagram.com/bijouxazur" title="" target="_blank">Instagram</a></li>
 				<li><a href="" title="">Szállítás &amp; fizetés</a></li>
 			</ul>
 
