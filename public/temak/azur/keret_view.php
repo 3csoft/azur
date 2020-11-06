@@ -23,7 +23,6 @@
 
 	<!-- CSS -->
 	<link rel="stylesheet" type="text/css" href="<?= base_url().TEMAMAPPA;?>/azur/css/style.css">
-	<link rel="stylesheet" type="text/css" href="<?= base_url().TEMAMAPPA;?>/azur/css/extra.css">
 	<!-- CSS -->
 
 	<!-- jQuery -->
