@@ -339,9 +339,10 @@
 	<main class="main">
 
 		<?php
-			$url = basename($_SERVER['REQUEST_URI']);
+			$url = $_GET['lap'];
 			switch($url)
 			{
+				case "404": include "404.html"; break; //404 hibaoldal
 				case "unsuccessful": include "unsuccessful.html"; break; //unsuccessful - sikeretelen vásárlás visszajelzés
 				case "successful": include "successful.html"; break; //successful order - sikeres vásárlás köszönő oldal
 				case "checkout": include "checkout.html"; break; //checkout

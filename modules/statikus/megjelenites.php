@@ -1,18 +1,1 @@
-<?php
-
-class Megjelenites extends MY_Modul{
-	
-	public function index($param = false) {		naplozo('Statikus oldal megtekintése');
-		if(isset($param['filenev'])) {
-			if(file_exists(FCPATH.TEMAMAPPA.'/'.FRONTENDTEMA.'html/'.$param['filenev'])) {
-				return $this->ci->load->view(FRONTENDTEMA.'html/'.$param['filenev'], array(), true);
-			}			else 
-			{
-				return '<b>FILE hiányzik: </b>'.FRONTENDTEMA.'html/'.$param['filenev'].'<br><br>';
-			}
-		} else {
-			return '<b>Nincs oldal beállítva</b>';
-		}
-	}
-
-}
+<?phpclass Megjelenites extends MY_Modul{		public function index($param = false) {		naplozo('Statikus oldal megtekintése');		if(isset($param['filenev'])) {			if(file_exists(FCPATH.TEMAMAPPA.'/'.FRONTENDTEMA.'statikus/'.$param['filenev'])) {				return $this->ci->load->view(FRONTENDTEMA.'statikus/'.$param['filenev'], array(), true);			}			else 			{				return '<b>FILE hiányzik: </b>'.FRONTENDTEMA.'statikus/'.$param['filenev'].'<br><br>';			}		} else {			return '<b>Nincs oldal beállítva</b>';		}	}}

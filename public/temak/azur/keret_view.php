@@ -136,7 +136,7 @@
                                                 <?php ws_autoload('termek');$kategoriak = new Kategoriak_osztaly;
 foreach ($kategoriak->kategoriaLista() as $kategoria):?>
 						<li>
-                                                    <a href="<?= base_url().beallitasOlvasas('termekek.oldal.url').'/'.$kategoria->slug ;?>>" title="<?= $kat->nev;?>">
+                                                    <a href="<?= base_url().beallitasOlvasas('termekek.oldal.url').'/'.$kategoria->slug ;?>" title="<?= $kat->nev;?>">
 								<div class="thumbnail">
 									<img src="<?= base_url().ws_image($kategoria->kep, 'mediumboxed')?>" alt="Bagues">
 								</div>

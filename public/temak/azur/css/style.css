@@ -3323,6 +3323,12 @@ body {
   padding: 0 15px;
   margin: 0 auto;
 }
+.static .img-404 {
+  margin: 0 auto;
+  max-width: 100%;
+  width: auto;
+  height: auto;
+}
 .static .cover-pic {
   margin: 0 0 30px;
 }
