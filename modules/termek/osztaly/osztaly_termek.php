@@ -56,6 +56,8 @@ class Termek_osztaly extends MY_Model {
 	var $termekValtozatok = null;
 	
 	var $jellemzoFeliratok = null;
+        
+        var $foKep = null;
 
 	public function __construct($id = false, $rendeles = false) {
 
@@ -1258,8 +1260,20 @@ class Termek_osztaly extends MY_Model {
 		$sql = "WHERE termek_id = {$id} ORDER BY sorrend ASC ";
 
 		$this->kepek = $this->Sql->gets(DBP."termek_kepek", $sql);
+                
+                
 		if(empty($this->kepek)) $this->kepek = array(0 => (object)array('termek_id' => $id, 'szerep' => 1, 'file' => 'img/noimage.jpg'));
-		return $this->kepek;
+		
+                foreach ($this->kepek as $kep) {
+                    if($kep->szerep==1) {
+                        $this->foKep = $kep;
+                    } else {
+                        $this->foKep = $this->kepek[0];
+                    }
+                    
+                }
+                
+                return $this->kepek;
 
 	}
 

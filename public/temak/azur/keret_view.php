@@ -138,7 +138,7 @@ foreach ($kategoriak->kategoriaLista() as $kategoria):?>
 						<li>
                                                     <a href="<?= base_url().beallitasOlvasas('termekek.oldal.url').'/'.$kategoria->slug ;?>" title="<?= $kat->nev;?>">
 								<div class="thumbnail">
-									<img src="<?= base_url().ws_image($kategoria->kep, 'mediumboxed')?>" alt="Bagues">
+									<img src="<?= base_url().ws_image($kategoria->kep2, 'mediumboxed')?>" alt="Bagues">
 								</div>
 								<div class="text"><?= __f($kategoria->nev, 'basic'); ?></div>
 							</a>

@@ -11,7 +11,7 @@
                         </div><!-- comment -->
 
 			
-			<?= widget('termek/termeklista/sliderlista', array('tipus' => 2, 'termek_db' => 5));?>
+			<?= widget('termek/termeklista/sliderlista', array('tipus' => 2, 'termek_db' => 50));?>
                         
                         
                         
@@ -23,7 +23,7 @@
                         </div>
 
                         
-			<?= widget('termek/termeklista/sliderlista', array('tipus' => 1, 'termek_db' => 5));?>
+			<?= widget('termek/termeklista/sliderlista', array('tipus' => 1, 'termek_db' => 50));?>
 
                         <!-- separator -->
                         <div class="separator-container">
@@ -61,7 +61,12 @@
             
             <?php endforeach;?>
 
-            
+          
+        </div>
+
+    </div>
+</div>
+  
            
 <!-- bottom-info -->
 <div class="bottom-info-container">
@@ -165,11 +170,6 @@
 </div>
  
             
-
-        </div>
-
-    </div>
-</div>
 
                         
                         

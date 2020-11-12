@@ -492,13 +492,23 @@ class Termek_admin extends MY_Modul{
 		foreach($lista as $sor) {
 			$termek = new Termek_osztaly($sor->id);
 			
+                        $termek->kepBetoltes();
+                        
+                        
+                        $sor->kep = '<div><div class="pic-container" style="background-image: url(\''.base_url().ws_image($termek->foKep->file, 'smallboxed').'\');"></div></div>';
 			
                         $sor->keszlet = '<a href="'.ADMINURL.'keszletek/darabszam?s='.$termek->id.'" target="_blank">&#8599;</a>';
 			
 			$sor->nev = '<a target="_blank" title="Előnézet" href="'.$termek->link().'">'.$termek->jellemzo('Név').'</a>';
 			if($termek->termekszulo_id!=0) $sor->nev = '<span style="color:#5F00D8">'.$sor->nev.'</span>';
-			$sor->cikkszam = $termek->cikkszam;
-			$sor->masolas = '<a onclick="if(!confirm(\'Biztosan?\')) return false;" href="'.ADMINURL.'termek/klonozas/'.$sor->id.'">Klónozás</a>';
+			$sor->ar = ws_arformatum($termek->bruttoAr);
+                        $kiemeles = '';
+                        if($cimke = $termek->cimkeTag(1)) $kiemeles .= 'akciós<br>';
+                        if($cimke = $termek->cimkeTag(2)) $kiemeles .= 'újdonság<br>';
+                        
+                        $sor->kiemeles = $kiemeles;
+                        //$sor->cikkszam = $termek->cikkszam;
+			//$sor->masolas = '<a onclick="if(!confirm(\'Biztosan?\')) return false;" href="'.ADMINURL.'termek/klonozas/'.$sor->id.'">Klónozás</a>';
 			$sor->valtozat = '<a  href="'.ADMINURL.'termek/ujvaltozat/'.$sor->id.'">Új változat</a>';
 			$adatlista[] = $sor;
 		}
@@ -515,7 +525,7 @@ class Termek_admin extends MY_Modul{
 		$tablazat->adatBeallitas('keresoMezok', $keresoMezok);
 		$tablazat->adatBeallitas('szerkeszto_url', 'termek/szerkesztes/');
 		$tablazat->adatBeallitas('torles_url', 'termek/torles/');
-		$tablazat->adatBeallitas('megjelenitettMezok', array('nev' => 'Név', 'cikkszam' => 'Cikkszám',  'szerkesztes' => 'Szerkesztés',  'valtozat' => 'Változat',  'masolas' => 'Klónozás','keszlet' => 'Készlet','torles' => 'Törlés' ));
+		$tablazat->adatBeallitas('megjelenitettMezok', array('kep' => 'Kép', 'nev' => 'Név', 'ar' => 'Ár', 'kiemeles' => 'Kiemelés', 'szerkesztes' => 'Szerkesztés',  'torles' => 'Törlés' ));
 		$tablazat->adatBeallitas('lista', $adatlista);
                 
                 $tablazat->lapozo($start,$limit, $ossz->ossz);
@@ -959,7 +969,7 @@ class Termek_admin extends MY_Modul{
 		if(@$sor->termekszulo_id != 0) {
 			$this->data['szulo'] = new Termek_osztaly($sor->termekszulo_id);
 		}
-		$doboz->HTMLHozzaadas('<div id="valtozatvalaszto">'.$this->load->view(ADMINTEMPLATE.'html/valtozatvalaszto', $this->data, true).'</div>');
+		//$doboz->HTMLHozzaadas('<div id="valtozatvalaszto">'.$this->load->view(ADMINTEMPLATE.'html/valtozatvalaszto', $this->data, true).'</div>');
 		
 		
 		
@@ -1002,7 +1012,7 @@ class Termek_admin extends MY_Modul{
 		$select1 = new Legordulo(array('attr' => '' , 'nevtomb'=>'a', 'mezonev' => 'gyarto_id', 'felirat' => 'Gyártó', 'ertek' => @$sor->gyarto_id, 'opciok' => $gyartok)) ;
 		$input = new Szovegmezo(array('nevtomb' => '', 'mezonev' => 'gyartonev', 'felirat' => 'vagy új gyártó neve', 'ertek' => "", 'attr' => ' "  '));
 		
-		$doboz->duplaInput($select1, $input);
+		//$doboz->duplaInput($select1, $input);
 		
 		// készlet
 		$keszlet = 0;
@@ -1017,10 +1027,10 @@ class Termek_admin extends MY_Modul{
             }
         }
                 
-		$input1 = new Szovegmezo(array('attr' => '' ,'nevtomb'=>'a', 'mezonev' => 'keszlet', 'felirat' => 'Készlet (ha nincs változat)', 'ertek' => $keszlet));
-		$input2 = new Szovegmezo(array('attr' => '' ,'nevtomb'=>'a', 'mezonev' => 'lefoglalva', 'felirat' => 'lefoglalva', 'ertek' => $lefoglalva));
+		//$input1 = new Szovegmezo(array('attr' => '' ,'nevtomb'=>'a', 'mezonev' => 'keszlet', 'felirat' => 'Készlet (ha nincs változat)', 'ertek' => $keszlet));
+		//$input2 = new Szovegmezo(array('attr' => '' ,'nevtomb'=>'a', 'mezonev' => 'lefoglalva', 'felirat' => 'lefoglalva', 'ertek' => $lefoglalva));
 		
-		$doboz->duplaInput($input1, $input2);
+		$doboz->duplaInput($input1, null);
 		// termékcsoport
 		$csoportok = array();
 		$rs = $this->Sql->sqlSorok("SELECT * FROM ".DBP."termek_csoportok ORDER BY nev ASC");
@@ -1067,8 +1077,8 @@ class Termek_admin extends MY_Modul{
                 $select1 = new Legordulo(array('attr' => ' id="kategoriaAjanloValaszto" ' , 'nevtomb'=>'', 'mezonev' => 'ajanlottkategoria', 'felirat' => 'Ajánlott termék kategóriák', 'ertek' => '', 'opciok' => $katSelect));
 		$gomb = new Urlapgomb(array('attr'=> 'onclick="aJs.kategoriaAjanloValasztoClick('.$id.');" class="btn btn-info"', 'nevtomb' => '', 'mezonev'=> 'kategoriahozzaadas','ertek' => 'Kategória kiválasztása' ));
 		
-                $doboz->duplaInput($select1, $gomb);
-		$doboz->HTMLHozzaadas('<div id="termekszerkeszto_kategoriaajanlovalaszto"></div>');
+                //$doboz->duplaInput($select1, $gomb);
+		//$doboz->HTMLHozzaadas('<div id="termekszerkeszto_kategoriaajanlovalaszto"></div>');
 		globalisMemoria('footerJs', '<script>$().ready(function(){ aJs.kategoriaAjanloValasztoClick('.$id.');})</script>', true);
                 $ALG->tartalomDobozVege();
 		
@@ -1369,6 +1379,16 @@ class Termek_admin extends MY_Modul{
 		
 		$tk = new Termekkep_osztaly();
 		$tk->kepTorles($kepid);
+		
+	}
+	
+	function kepkiemeles() {
+		include_once('osztaly/osztaly_termekkep.php');
+		
+		$kepid = $_POST['kep'];
+		
+		$tk = new Termekkep_osztaly();
+		$tk->ezAFokep($kepid, (int)$this->ci->uri->segment(4));
 		
 	}
 	
