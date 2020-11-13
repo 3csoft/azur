@@ -6,51 +6,38 @@
 
         
 
-        <ul class="products clearfix">
+        <ul class="products">
 
 			<?php foreach($termekek as $t):?>
-
-            <li class="">
-
-                <div class="item">
-
-                     <?php $i = 0; foreach($t->cimkek as $cimke):?>
-							<?php if($cimke->cimkeosztaly!='' and $t->cimkeTag($cimke->id)) : $c = $t->cimkeTag($cimke->id);?>
-								<div class="<?= $cimke->cimkeosztaly. ' badge-pos'.$i;?> "><?= $c->felirat!=''?$c->felirat:$cimke->nev;?></div>
-								
-							<?php $i++; endif;?>
-                     <?php endforeach;?>
-
+            
+            
+            
+            <li class="favorite">
+                <div class="add-to-favs"></div>
+                <a href="<?= $t->link();?>" title="<?= $t->jellemzo('Név');?>" class="">
                     <div class="img-container">
-
-                        <a href="<?= $t->link();?>" title="<?= $t->jellemzo('Név');?>" >
-
-                            <img src="<?= base_url().ws_image($t->fokep(),'mediumboxed');?>" title="<?= $t->jellemzo('Név');?>" alt="<?= $t->jellemzo('Név');?>">
-
-                        </a>
+                        <img src="<?= base_url().ws_image($t->fokep(),'mediumboxed');?>" title="<?= $t->jellemzo('Név');?>" alt="<?= $t->jellemzo('Név');?>">
 
                     </div>
-
-                    <div class="prod-name">
-
-                        <a href="<?= $t->link();?>" title="<?= $t->jellemzo('Név');?>"><?= $t->jellemzo('Név');?></a>
-
+                    <div class="badges">
+                        <span class="badge-new">Nouveau</span>
+                        <span class="badge-sale">Vente</span>
                     </div>
-					<?php $armod = (beallitasOlvasas('armod-termeklista')=='1')?'Bruttó':'Nettó';?>
-                    <div class="prod-price">
-						<?php if($t->eredeti_ar!=0):?>
-						<span class="old-price"><?= PN_ELO.' '.ws_arformatum($t->eredetiAr($armod)).' '.PN_UTO;?></span>
-						<?php endif;?>
+                    <div class="product-name"><?= $t->jellemzo('Név');?></div>
+                    
+                    
+                    <div class="price">
+                        
+                        <?php if($t->eredeti_ar!=0):?>
+                            <span class="old-price"><?= PN_ELO.' '.ws_arformatum($t->eredetiAr($armod)).' '.PN_UTO;?></span>
+			<?php endif;?>
                         <?= PN_ELO.' '.ws_arformatum($t->alapAr($armod)).' '.PN_UTO;?>
-
                     </div>
-
-                </div>
-
+                </a>
             </li>
-
-
-
+            
+            
+            
            <?php endforeach; ?>
 
         </ul>

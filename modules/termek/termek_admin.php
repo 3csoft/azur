@@ -1030,7 +1030,7 @@ class Termek_admin extends MY_Modul{
 		//$input1 = new Szovegmezo(array('attr' => '' ,'nevtomb'=>'a', 'mezonev' => 'keszlet', 'felirat' => 'Készlet (ha nincs változat)', 'ertek' => $keszlet));
 		//$input2 = new Szovegmezo(array('attr' => '' ,'nevtomb'=>'a', 'mezonev' => 'lefoglalva', 'felirat' => 'lefoglalva', 'ertek' => $lefoglalva));
 		
-		$doboz->duplaInput($input1, null);
+		//$doboz->duplaInput($input1, null);
 		// termékcsoport
 		$csoportok = array();
 		$rs = $this->Sql->sqlSorok("SELECT * FROM ".DBP."termek_csoportok ORDER BY nev ASC");

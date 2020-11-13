@@ -1,4 +1,4 @@
-		<?php $ci = getCI();?>
+    <?php $ci = getCI();?>
        
        <div class="heading">
 

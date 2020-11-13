@@ -18,7 +18,8 @@ class Rendelesek extends MY_Modul {
          */
         function elfogyottTermekElrejtes() {
             
-            
+            // itt nincs készletezés
+            return ;
             $sql = "SELECT DISTINCT(termek_id) "
                     . "FROM ".DBP."termek_keszletek tk, ".DBP."termekek t  "
                     . "WHERE t.aktiv = 1 AND t.id = tk.termek_id AND "
