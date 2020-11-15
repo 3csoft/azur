@@ -51,7 +51,7 @@
             <div class="category">
                 <a href="<?= base_url().beallitasOlvasas('termekek.oldal.url').'/'.$kategoria->slug ;?>" title="<?= $kat->nev;?>">
                     <div class="img-container">
-                        <img src="<?= base_url().ws_image($kategoria->kep, 'mediumboxed')?>" alt="<?= $kat->nev;?>">
+                        <img src="<?= base_url().($kategoria->kep);?>" alt="<?= $kat->nev;?>">
                     </div>
                     <div class="text"><?= __f($kategoria->nev, 'basic'); ?></div>
                 </a>

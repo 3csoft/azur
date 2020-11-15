@@ -1240,8 +1240,8 @@ class Termek_osztaly extends MY_Model {
 			$this->kepBetoltes();
 
 		}
-
-		if($this->kepek) return $this->kepek[0]->file;
+                
+		if($this->kepek) return $this->foKepPeldany->file;
 
 		return false;
 
@@ -1252,26 +1252,27 @@ class Termek_osztaly extends MY_Model {
 		if($this->kepek) return $this->kepek[0]->file;
 
 		if(!isset($this->id)) return false;
-
+                
 		$id = $this->id;
 
 		if($this->rendeles) $id = $this->termek_id;
 
 		$sql = "WHERE termek_id = {$id} ORDER BY sorrend ASC ";
-
+                
 		$this->kepek = $this->Sql->gets(DBP."termek_kepek", $sql);
                 
                 
 		if(empty($this->kepek)) $this->kepek = array(0 => (object)array('termek_id' => $id, 'szerep' => 1, 'file' => 'img/noimage.jpg'));
 		
+                $this->foKepPeldany = false;
                 foreach ($this->kepek as $kep) {
                     if($kep->szerep==1) {
-                        $this->foKep = $kep;
-                    } else {
-                        $this->foKep = $this->kepek[0];
-                    }
+                        $this->foKepPeldany = $kep;
+                    } 
                     
                 }
+                
+                if(!$this->foKepPeldany) $this->foKepPeldany = $this->kepek[0];
                 
                 return $this->kepek;
 
