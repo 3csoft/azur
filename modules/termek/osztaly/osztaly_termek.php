@@ -1242,7 +1242,7 @@ class Termek_osztaly extends MY_Model {
 		}
                 
 		if($this->kepek) return $this->foKepPeldany->file;
-
+                
 		return false;
 
 	}

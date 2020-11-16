@@ -1044,27 +1044,45 @@ body {
         &.favorite {
 
             .add-to-favs {
-                .opacity(1);
-                .bg-img('../img/icon-favorites-color.svg',center,no-repeat,20px 20px);
+
+                &:before {
+                    .opacity(1);
+                    .bg-img('../img/icon-favorites-color.svg',center,no-repeat,18px 18px);
+                }
 
                 &:hover {
-                    .opacity(1);
+                    &:before {
+                        .opacity(1);
+                    }
                 }
             }
         }
 
         .add-to-favs {
             .wh(30px,30px);
-            .bg-img('../img/icon-favorites-header.svg',center,no-repeat,20px 20px);
             position: absolute;
-            top: 30px;
-            right: 20px;
+            top: 35px;
+            right: 25px;
             cursor: pointer;
             z-index: 8;
-            .opacity(.2);
+            .opacity(1);
+            .rounded(50%);
+            .bg-col(@white);
+
+            &:before {
+                content: '';
+                .wh(30px,30px);
+                .bg-img('../img/icon-favorites-header.svg',center,no-repeat,18px 18px);
+                display: block;
+                .opacity(.2);
+            }
 
             &:hover {
-                .opacity(.66);
+                .box-shadow(0 0 25px rgba(0,0,0,.02));
+
+                &:before {
+                    .opacity(.66);
+                }
             }
         }
 
@@ -1139,8 +1157,8 @@ body {
             }
 
             .product-name {
-                .bold(12px,1.5,.25px);
-                text-transform: uppercase;
+                .bold(14px,1.25,.25px);
+                //text-transform: uppercase;
                 margin: 0 0 10px;
                 color: @black;
             }
@@ -1895,30 +1913,49 @@ body {
             margin: 0 0 30px;
             position: relative;
 
+
             &.favorite {
 
                 .add-to-favs {
-                    .opacity(1);
-                    .bg-img('../img/icon-favorites-color.svg',center,no-repeat,20px 20px);
+
+                    &:before {
+                        .opacity(1);
+                        .bg-img('../img/icon-favorites-color.svg',center,no-repeat,18px 18px);
+                    }
 
                     &:hover {
-                        .opacity(1);
+                        &:before {
+                            .opacity(1);
+                        }
                     }
                 }
             }
 
             .add-to-favs {
                 .wh(30px,30px);
-                .bg-img('../img/icon-favorites-header.svg',center,no-repeat,20px 20px);
                 position: absolute;
                 top: 10px;
                 right: 25px;
                 cursor: pointer;
                 z-index: 8;
-                .opacity(.2);
+                .opacity(1);
+                .rounded(50%);
+                .bg-col(@white);
+
+                &:before {
+                    content: '';
+                    .wh(30px,30px);
+                    .bg-img('../img/icon-favorites-header.svg',center,no-repeat,18px 18px);
+                    display: block;
+                    .opacity(.2);
+                }
 
                 &:hover {
-                    .opacity(.66);
+                    .box-shadow(0 0 25px rgba(0,0,0,.02));
+
+                    &:before {
+                        .opacity(.66);
+                    }
                 }
             }
 
@@ -1995,8 +2032,8 @@ body {
                 }
 
                 .product-name {
-                    .bold(12px,1.5,.25px);
-                    text-transform: uppercase;
+                    .bold(14px,1.25,.25px);
+                    //text-transform: uppercase;
                     margin: 0;
                     color: @black;
                     padding: 0 20px;
